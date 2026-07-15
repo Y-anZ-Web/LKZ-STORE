@@ -1,6 +1,6 @@
 # LKZ Shop 🛒
 
-Sua loja digital de produtos gamers.
+Sua loja digital de produtos e recursos.
 
 ## Sobre
 
@@ -17,15 +17,8 @@ A LKZ Shop oferece ferramentas, launchers e recursos digitais premium para a com
 
 ## Produtos
 
-- Lua Tools
-- Sky Tools
-- Hydra Launcher
-- Nuvio Cloud
-- Optimizer Pro
-- Ping Reducer
-- Texture Pack 4K
-- Mod Pack Elite
-- AntiCheat Pro
+-A ser definido
+-A ser definido
 
 ## Tecnologias
 
