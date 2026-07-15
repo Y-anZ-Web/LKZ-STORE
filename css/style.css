@@ -57,7 +57,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--navbar-height);
+  scroll-padding-top: calc(var(--navbar-height) + 30px);
 }
 
 body {
@@ -101,12 +101,39 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================
+   DEV BANNER
+   ============================================ */
+
+.dev-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #f59e0b, #eab308);
+  color: #1a1a2e;
+  text-align: center;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.3px;
+}
+
+.dev-banner i {
+  font-size: 14px;
+}
+
+/* ============================================
    NAVBAR
    ============================================ */
 
 .navbar {
   position: fixed;
-  top: 0;
+  top: 30px;
   left: 0;
   right: 0;
   height: var(--navbar-height);
@@ -312,9 +339,10 @@ img { max-width: 100%; display: block; }
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-top: var(--navbar-height);
+  padding-top: calc(var(--navbar-height) + 30px);
 }
 
 .hero-bg {

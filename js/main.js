@@ -218,7 +218,7 @@ const Shop = {
           <span class="product-category">${p.category}</span>
           <span class="product-downloads"><i class="fas fa-download"></i> ${p.downloads}</span>
         </div>
-        <div class="product-price">R$ ${p.price.toFixed(2)}</div>
+        <div class="product-price">${p.price > 0 ? 'R$ ' + p.price.toFixed(2) : 'A ser definido'}</div>
         <button class="btn-buy" data-id="${p.id}">
           <i class="fas fa-cart-plus"></i> Adicionar
         </button>
@@ -337,11 +337,17 @@ const Cart = {
       return;
     }
 
-    const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+    const username = Auth.username;
+    const itemList = items.map(i => `- ${i.name} (x${i.qty})`).join('\n');
+    const totalItems = items.reduce((s, i) => s + i.qty, 0);
+
+    const message = `🛒 **Novo Pedido - LKZ Shop**\n\n👤 Cliente: ${username}\n\n📦 Itens:\n${itemList}\n\n💰 Total de itens: ${totalItems}`;
+
+    navigator.clipboard.writeText(message).catch(() => {});
+
     LS.set('cart', []);
     this.updateDisplay();
 
-    // Increment sales
     let sales = LS.get('sales', 0);
     sales += 1;
     LS.set('sales', sales);
@@ -350,13 +356,18 @@ const Cart = {
     const msg = document.getElementById('cartItems');
     msg.innerHTML = `
       <div class="cart-success">
-        <i class="fas fa-check-circle"></i>
-        <h3>Pedido Confirmado!</h3>
-        <p>Total: R$ ${total.toFixed(2)}</p>
-        <p style="font-size:13px;color:var(--text-muted)">Você receberá as instruções por email.</p>
+        <i class="fab fa-discord"></i>
+        <h3>Quase lá!</h3>
+        <p>Mensagem copiada!</p>
+        <p style="font-size:13px;color:var(--text-muted)">Cole no chat do Discord para finalizar o pedido.</p>
       </div>
     `;
-    setTimeout(() => { this.close(); this.updateDisplay(); }, 3000);
+
+    setTimeout(() => {
+      this.close();
+      this.updateDisplay();
+      window.open('https://discord.gg/ZpWxwE3ZGE', '_blank');
+    }, 1500);
   }
 };
 
