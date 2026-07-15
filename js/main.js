@@ -136,14 +136,17 @@ const Auth = {
     const password = document.getElementById('loginPassword').value;
     if (!username || !password) { this.loginError.textContent = 'Preencha todos os campos.'; return; }
 
-    const users = LS.get('users', {});
-    if (!users[username]) { this.loginError.textContent = 'Usuário não encontrado.'; return; }
-    if (users[username].password !== password) { this.loginError.textContent = 'Senha incorreta.'; return; }
-
-    LS.set('session', { username });
-    this.setLoggedIn(username);
-    this.close();
-    Stats.incrementMembers();
+    API.login(username, password)
+      .then(data => {
+        LS.set('token', data.token);
+        LS.set('session', { username: data.user.username });
+        this.setLoggedIn(data.user.username);
+        this.close();
+        Stats.incrementMembers();
+      })
+      .catch(err => {
+        this.loginError.textContent = err.message;
+      });
   },
 
   handleRegister(e) {
@@ -153,14 +156,15 @@ const Auth = {
     const password = document.getElementById('regPassword').value;
     if (!username || !email || !password) { this.registerError.textContent = 'Preencha todos os campos.'; return; }
 
-    const users = LS.get('users', {});
-    if (users[username]) { this.registerError.textContent = 'Usuário já existe.'; return; }
-
-    users[username] = { email, password, created: Date.now() };
-    LS.set('users', users);
-    this.registerError.style.color = '#4ade80';
-    this.registerError.textContent = 'Conta criada! Faça login.';
-    setTimeout(() => this.switchTab('login'), 1000);
+    API.register(username, email, password)
+      .then(data => {
+        this.registerError.style.color = '#4ade80';
+        this.registerError.textContent = 'Conta criada! Faça login.';
+        setTimeout(() => this.switchTab('login'), 1000);
+      })
+      .catch(err => {
+        this.registerError.textContent = err.message;
+      });
   },
 
   handleLogout() {
@@ -337,37 +341,46 @@ const Cart = {
       return;
     }
 
+    const token = LS.get('token');
     const username = Auth.username;
     const itemList = items.map(i => `- ${i.name} (x${i.qty})`).join('\n');
     const totalItems = items.reduce((s, i) => s + i.qty, 0);
 
     const message = `🛒 **Novo Pedido - LKZ Shop**\n\n👤 Cliente: ${username}\n\n📦 Itens:\n${itemList}\n\n💰 Total de itens: ${totalItems}`;
-
     navigator.clipboard.writeText(message).catch(() => {});
 
-    LS.set('cart', []);
-    this.updateDisplay();
+    API.createOrder(token, items.map(i => ({ id: i.id, name: i.name, qty: i.qty })))
+      .then(data => {
+        LS.set('cart', []);
+        this.updateDisplay();
+        Stats.updateDisplay();
 
-    let sales = LS.get('sales', 0);
-    sales += 1;
-    LS.set('sales', sales);
-    Stats.updateDisplay();
+        const msg = document.getElementById('cartItems');
+        msg.innerHTML = `
+          <div class="cart-success">
+            <i class="fab fa-discord"></i>
+            <h3>Quase lá!</h3>
+            <p>Mensagem copiada!</p>
+            <p style="font-size:13px;color:var(--text-muted)">Pedido #${data.id} registrado. Cole no chat do Discord para finalizar.</p>
+          </div>
+        `;
 
-    const msg = document.getElementById('cartItems');
-    msg.innerHTML = `
-      <div class="cart-success">
-        <i class="fab fa-discord"></i>
-        <h3>Quase lá!</h3>
-        <p>Mensagem copiada!</p>
-        <p style="font-size:13px;color:var(--text-muted)">Cole no chat do Discord para finalizar o pedido.</p>
-      </div>
-    `;
-
-    setTimeout(() => {
-      this.close();
-      this.updateDisplay();
-      window.open('https://discord.gg/ZpWxwE3ZGE', '_blank');
-    }, 1500);
+        setTimeout(() => {
+          this.close();
+          this.updateDisplay();
+          window.open('https://discord.gg/ZpWxwE3ZGE', '_blank');
+        }, 2000);
+      })
+      .catch(err => {
+        const msg = document.getElementById('cartItems');
+        msg.innerHTML = `
+          <div class="cart-success">
+            <i class="fas fa-exclamation-circle" style="color:#f87171"></i>
+            <h3>Erro</h3>
+            <p style="color:var(--text-secondary)">${err.message}</p>
+          </div>
+        `;
+      });
   }
 };
 

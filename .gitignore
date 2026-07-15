@@ -4,5 +4,7 @@ Thumbs.db
 *.log
 portal.db
 Lkxz-Portal/
+backend/.env
+backend/data.db
 
 Lkxz-Portal/
