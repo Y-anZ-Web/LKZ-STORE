@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LKZ Shop - Sua loja digital de produtos gamers">
+  <meta name="author" content="LKZ">
+  <title>LKZ Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <div class="logo-icon">
+          <i class="fas fa-store"></i>
+        </div>
+        <span class="logo-text">LKZ<span class="logo-accent">Shop</span></span>
+      </a>
+
+      <div class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </div>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#produtos" class="nav-link">Produtos</a></li>
+        <li><a href="#categorias" class="nav-link">Categorias</a></li>
+        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="#faq-section" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Buscar produtos..." id="searchInput">
+        </div>
+        <button class="cart-btn" id="cartBtn" aria-label="Carrinho">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="btn-login" id="loginBtn" aria-label="Entrar">
+          <i class="fas fa-user"></i>
+          <span id="loginBtnText">Entrar</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-particles" id="particles"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <i class="fas fa-store"></i>
+          <span>LKZ Shop - Loja Oficial</span>
+        </div>
+        <h1 class="hero-title">Sua loja digital de <span class="gradient-text">produtos gamers</span>.</h1>
+        <p class="hero-subtitle">
+          Ferramentas, launchers e recursos premium para sua <strong>experiência gamer</strong>. 
+          Tudo que você precisa em um só lugar.
+        </p>
+        <div class="hero-buttons">
+          <a href="#produtos" class="btn btn-primary">
+            <i class="fas fa-store"></i> Ver Produtos
+          </a>
+          <a href="#categorias" class="btn btn-secondary">
+            <i class="fas fa-tags"></i> Categorias
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-illustration">
+          <div class="orbit-container">
+            <div class="orbit-center"><i class="fas fa-store"></i></div>
+            <div class="orbit-ring ring-1"></div>
+            <div class="orbit-ring ring-2"></div>
+            <div class="orbit-ring ring-3"></div>
+            <div class="orbit-dot dot-1"><i class="fas fa-tag"></i></div>
+            <div class="orbit-dot dot-2"><i class="fas fa-cart-shopping"></i></div>
+            <div class="orbit-dot dot-3"><i class="fas fa-box"></i></div>
+            <div class="orbit-dot dot-4"><i class="fas fa-gem"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produtos Section -->
+  <section class="section" id="produtos">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-box"></i> Produtos</span>
+      <h2 class="section-title">Nossos Produtos</h2>
+      <p class="section-desc">Ferramentas e recursos premium para gamers.</p>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- Categorias Section -->
+  <section class="section" id="categorias">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-tags"></i> Categorias</span>
+      <h2 class="section-title">Navegue por Categoria</h2>
+      <p class="section-desc">Encontre o que precisa rapidamente.</p>
+    </div>
+
+    <div class="quick-access-grid">
+      <a href="#" class="quick-card" data-cat="launchers">
+        <div class="quick-icon"><i class="fas fa-rocket"></i></div>
+        <h4>Launchers</h4>
+        <p>3 produtos</p>
+      </a>
+
+      <a href="#" class="quick-card" data-cat="tools">
+        <div class="quick-icon"><i class="fas fa-tools"></i></div>
+        <h4>Ferramentas</h4>
+        <p>4 produtos</p>
+      </a>
+
+      <a href="#" class="quick-card" data-cat="extras">
+        <div class="quick-icon"><i class="fas fa-cube"></i></div>
+        <h4>Extras</h4>
+        <p>2 produtos</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Sobre Section -->
+  <section class="section" id="sobre">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-info-circle"></i> Sobre</span>
+      <h2 class="section-title">A LKZ Shop</h2>
+      <p class="section-desc">Sua loja de confiança.</p>
+    </div>
+
+    <div class="about-content">
+      <div class="about-text">
+        <p>A <strong>LKZ Shop</strong> nasceu para oferecer ferramentas, launchers e recursos digitais de qualidade para a comunidade gamer.</p>
+        <p>Trabalhamos com produtos verificados e suporte dedicado para garantir a melhor experiência.</p>
+        <div class="about-stats" id="aboutStats">
+          <div class="stat">
+            <span class="stat-number" id="statProdutos">0</span>
+            <span class="stat-label">Produtos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" id="statVendas">0</span>
+            <span class="stat-label">Vendas</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" id="statMembros">0</span>
+            <span class="stat-label">Clientes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" id="faq-section">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-question-circle"></i> FAQ</span>
+      <h2 class="section-title">Dúvidas Frequentes</h2>
+      <p class="section-desc">Tire suas dúvidas sobre a LKZ Shop.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Como comprar um produto?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Adicione os produtos ao carrinho, faça login e finalize a compra. Você receberá as instruções por email.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Quais formas de pagamento?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Aceitamos PIX, cartão de crédito e boleto. As opções aparecem no checkout.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Como recebo o produto?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Após a confirmação do pagamento, você recebe o link de download e as instruções por email.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Tem suporte?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Sim! Nosso suporte está disponível pelo Discord e email para ajudar com qualquer dúvida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo-icon">
+          <i class="fas fa-store"></i>
+        </div>
+        <span class="logo-text">LKZ<span class="logo-accent">Shop</span></span>
+        <p>Sua loja digital de produtos gamers.</p>
+        <div class="footer-social">
+          <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+          <a href="https://github.com/Y-anZ-Web" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="#home">Home</a>
+          <a href="#produtos">Produtos</a>
+          <a href="#categorias">Categorias</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="#">Discord</a>
+          <a href="#">Email</a>
+          <a href="#">Suporte</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Uso</a>
+          <a href="#">Trocas e Devoluções</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 LKZ Shop. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h3><i class="fas fa-shopping-cart"></i> Carrinho</h3>
+        <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <div class="cart-empty">
+          <i class="fas fa-cart-empty"></i>
+          <p>Carrinho vazio</p>
+        </div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cartTotal">R$ 0,00</span>
+        </div>
+        <button class="btn btn-primary cart-checkout" id="checkoutBtn">
+          <i class="fas fa-check"></i> Finalizar Compra
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-modal">
+      <button class="auth-close" id="authClose"><i class="fas fa-times"></i></button>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Entrar</button>
+        <button class="auth-tab" data-tab="register">Cadastrar</button>
+      </div>
+
+      <form class="auth-form active" id="loginForm">
+        <h3>Bem-vindo de volta!</h3>
+        <p>Faça login para comprar.</p>
+        <div class="auth-field">
+          <label for="loginUsername">Usuário</label>
+          <input type="text" id="loginUsername" placeholder="Seu usuário" required>
+        </div>
+        <div class="auth-field">
+          <label for="loginPassword">Senha</label>
+          <input type="password" id="loginPassword" placeholder="Sua senha" required>
+        </div>
+        <div class="auth-error" id="loginError"></div>
+        <button type="submit" class="btn btn-primary auth-submit">
+          <i class="fas fa-sign-in-alt"></i> Entrar
+        </button>
+      </form>
+
+      <form class="auth-form" id="registerForm">
+        <h3>Criar conta</h3>
+        <p>Cadastre-se na LKZ Shop.</p>
+        <div class="auth-field">
+          <label for="regUsername">Usuário</label>
+          <input type="text" id="regUsername" placeholder="Escolha um usuário" required>
+        </div>
+        <div class="auth-field">
+          <label for="regEmail">Email</label>
+          <input type="email" id="regEmail" placeholder="Seu email" required>
+        </div>
+        <div class="auth-field">
+          <label for="regPassword">Senha</label>
+          <input type="password" id="regPassword" placeholder="Crie uma senha" required>
+        </div>
+        <div class="auth-error" id="registerError"></div>
+        <button type="submit" class="btn btn-primary auth-submit">
+          <i class="fas fa-user-plus"></i> Cadastrar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Console Secreto -->
+  <div class="console-overlay" id="consoleOverlay">
+    <div class="console-window" id="consoleWindow">
+      <div class="console-header">
+        <div class="console-dots">
+          <span class="console-dot red"></span>
+          <span class="console-dot yellow"></span>
+          <span class="console-dot green"></span>
+        </div>
+        <span class="console-title">LKZ Console v1.0</span>
+      </div>
+      <div class="console-body" id="consoleBody">
+        <div class="console-line welcome">
+          <span class="console-prompt">[LKZ]</span> Bem-vindo à LKZ Shop. Digite 'help'.
+        </div>
+        <div class="console-line system-info">
+          <span class="console-prompt">[LKZ]</span> Sistema inicializado.
+        </div>
+        <div id="consoleOutput"></div>
+        <div class="console-input-line">
+          <span class="console-path" id="consolePath">Shop/Home ></span>
+          <span class="console-input-wrapper">
+            <input type="text" class="console-input" id="consoleInput" spellcheck="false" autocomplete="off">
+            <span class="console-cursor"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
