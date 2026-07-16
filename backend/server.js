@@ -13,14 +13,18 @@ const ADMIN_USER = process.env.ADMIN_USERNAME || 'admin';
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'admin123';
 
 app.use(cors({ origin: '*' }));
-app.use(express.text({ type: '*/*' }));
 app.use((req, res, next) => {
-  if (typeof req.body === 'string' && req.body.trim()) {
-    try { req.body = JSON.parse(req.body); } catch { req.body = {}; }
-  } else if (!req.body) {
-    req.body = {};
-  }
-  next();
+  const chunks = [];
+  req.on('data', chunk => chunks.push(chunk));
+  req.on('end', () => {
+    const raw = Buffer.concat(chunks).toString('utf-8');
+    if (raw) {
+      try { req.body = JSON.parse(raw); } catch { req.body = { _raw: raw }; }
+    } else {
+      req.body = req.body || {};
+    }
+    next();
+  });
 });
 
 function auth(req, res, next) {
@@ -55,6 +59,9 @@ async function sendDiscord(content) {
 
 // Rota raiz para teste
 app.get('/', (req, res) => res.json({ status: 'online', name: 'LKZ Shop API', version: '1.0.0' }));
+
+// Debug: mostra o body recebido
+app.post('/debug', (req, res) => res.json({ body: req.body, type: typeof req.body }));
 
 // Register
 app.post('/api/register', async (req, res) => {
