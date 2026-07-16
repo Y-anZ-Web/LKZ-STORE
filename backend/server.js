@@ -14,10 +14,13 @@ const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'admin123';
 
 app.use(cors({ origin: '*' }));
 app.use((req, res, next) => {
-  let data = '';
-  req.on('data', chunk => data += chunk);
+  const chunks = [];
+  req.on('data', chunk => chunks.push(chunk));
   req.on('end', () => {
-    try { req.body = JSON.parse(data); } catch { req.body = {}; }
+    const raw = Buffer.concat(chunks).toString('utf-8');
+    if (raw) {
+      try { req.body = JSON.parse(raw); } catch { req.body = {}; }
+    }
     next();
   });
 });
