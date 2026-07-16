@@ -13,7 +13,14 @@ const ADMIN_USER = process.env.ADMIN_USERNAME || 'admin';
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'admin123';
 
 app.use(cors({ origin: '*' }));
-app.use(express.json());
+app.use((req, res, next) => {
+  let data = '';
+  req.on('data', chunk => data += chunk);
+  req.on('end', () => {
+    try { req.body = JSON.parse(data); } catch { req.body = {}; }
+    next();
+  });
+});
 
 function auth(req, res, next) {
   const header = req.headers.authorization;
